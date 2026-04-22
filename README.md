@@ -49,7 +49,13 @@ To maximize the benefits of plugin-assisted development while maintaining securi
 #### Install a plugin
 
 ```bash
-/plugin install <plugin-name>@agent-plugins-for-alicloud
+/plugin install alibabacloud-cli-usage@agent-plugins-for-alicloud
+```
+
+or
+
+```bash
+/plugin install alibabacloud-terraform@agent-plugins-for-alicloud
 ```
 
 ### Codex
