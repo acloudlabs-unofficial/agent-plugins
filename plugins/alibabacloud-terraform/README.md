@@ -12,8 +12,9 @@ This plugin uses the `terraform-usage` MCP server (powered by `lazy.alibabacloud
 1. **Discover** — Find supported products via `aliyun iacservice list-products`
 2. **Identify** — List Terraform resource types via `aliyun iacservice list-resource-types --product <product>`
 3. **Schema** — Get full attribute schema via `aliyun iacservice get-resource-type --resource-type <resourceType>`
-4. **Document** — Read official Terraform docs with `AlibabaCloud___ReadDocument`
-5. **Generate** — Write or modify HCL code based on gathered knowledge
+4. **Search Docs** — Search documentation with `AlibabaCloud___SearchDocument` to find relevant URLs
+5. **Read Docs** — Read full documentation with `AlibabaCloud___ReadDocument` using URLs from search results
+6. **Generate** — Write or modify HCL code based on gathered knowledge
 
 ## Agent Skill Triggers
 
@@ -32,7 +33,8 @@ This plugin uses the `terraform-usage` MCP server (powered by `lazy.alibabacloud
 | Tool | Purpose |
 | ---- | ------- |
 | `AlibabaCloud___CallCLI` | Execute IaCService CLI commands (`list-products`, `list-resource-types`, `get-resource-type`) |
-| `AlibabaCloud___ReadDocument` | Read official Terraform documentation for a resource |
+| `AlibabaCloud___SearchDocument` | Search Alibaba Cloud documentation by keyword to find relevant URLs |
+| `AlibabaCloud___ReadDocument` | Read a specific document by URL (must use URLs from `SearchDocument`) |
 
 ## Safety
 

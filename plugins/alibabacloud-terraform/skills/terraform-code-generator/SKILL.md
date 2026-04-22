@@ -1,7 +1,7 @@
 ---
 name: terraform-code-generator
 description: "Generate and modify Alibaba Cloud Terraform HCL code. Triggers on phrases like: write Terraform for Alibaba Cloud, create alicloud Terraform config, generate HCL for ECS, Terraform code for VPC, alicloud infrastructure as code, Terraform resource for RDS, modify Terraform configuration, alicloud provider Terraform."
-allowed-tools: "mcp__terraform-usage__AlibabaCloud___CallCLI,mcp__terraform-usage__AlibabaCloud___ReadDocument"
+allowed-tools: "mcp__terraform-usage__AlibabaCloud___CallCLI,mcp__terraform-usage__AlibabaCloud___SearchDocument,mcp__terraform-usage__AlibabaCloud___ReadDocument"
 ---
 
 # Alibaba Cloud Terraform Code Generator
@@ -12,7 +12,8 @@ Generate and modify production-quality Alibaba Cloud Terraform (HCL) configurati
 
 1. **ONLY use tools from the `terraform-usage` MCP server.** The permitted tools are:
    - `AlibabaCloud___CallCLI` — Execute IaCService CLI commands to query Terraform product/resource metadata
-   - `AlibabaCloud___ReadDocument` — Read Terraform documentation for a resource from Alibaba Cloud
+   - `AlibabaCloud___SearchDocument` — Search Alibaba Cloud documentation by keyword to find relevant document URLs
+   - `AlibabaCloud___ReadDocument` — Read a specific document by URL (must use URLs obtained from `SearchDocument`)
 2. **Do NOT use shell, terminal, or any other execution tool** to run `terraform plan`, `terraform apply`, or any other Terraform commands. Generated HCL code is for the user to review and apply themselves.
 3. **Always remind the user to review the generated HCL** before running `terraform apply`, especially when resources involve costs, data deletion, or security-sensitive configurations.
 4. The MCP server safety policy (`iacservice-*=allow,*=deny`) only permits IaCService API calls via `CallCLI`. All other CLI commands are blocked.
@@ -58,8 +59,14 @@ Call `AlibabaCloud___CallCLI` with `aliyun iacservice get-resource-type --resour
 
 ### Step 4: Consult Terraform Documentation
 
-Use `AlibabaCloud___ReadDocument` with the resource type name to fetch the official Terraform documentation from Alibaba Cloud.
+Documentation lookup is a **two-step process**:
 
+1. **Search**: Use `AlibabaCloud___SearchDocument` with the resource type name (e.g., `alicloud_vpc`) as the keyword to find relevant documentation URLs
+2. **Read**: Use `AlibabaCloud___ReadDocument` with a URL obtained from the search results to read the full document content
+
+**Important:** You must always search first to get valid document URLs. Do NOT pass arbitrary URLs or resource names directly to `ReadDocument` — it only accepts URLs returned by `SearchDocument`.
+
+After reading the documentation:
 - Review usage examples and best practices
 - Understand attribute-level details that may not be captured in the schema
 - Check for known limitations or caveats
@@ -101,9 +108,10 @@ Present the generated HCL code with:
 
 When you encounter unclear attribute definitions or constraints:
 
-1. Use `AlibabaCloud___ReadDocument` with the resource type name to get detailed documentation
-2. Cross-reference the schema from `get-resource-type` (via `AlibabaCloud___CallCLI`) with the documentation
-3. Provide the user with links to official documentation for edge cases
+1. Use `AlibabaCloud___SearchDocument` with relevant keywords (resource type name, attribute name, error message) to find documentation URLs
+2. Use `AlibabaCloud___ReadDocument` with the URL from search results to read the full documentation
+3. Cross-reference the schema from `get-resource-type` (via `AlibabaCloud___CallCLI`) with the documentation
+4. Provide the user with links to official documentation for edge cases
 
 ## Principles
 
