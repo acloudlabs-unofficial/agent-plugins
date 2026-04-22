@@ -67,6 +67,11 @@ Based on the API definition and user-provided information:
 3. Apply sensible defaults for optional parameters when appropriate
 4. Use `AlibabaCloud___GenerateCLICommand` to convert the parameters into a properly formatted CLI command
 
+**Important:** The generated CLI command follows the [CLI v2 syntax](references/cli-v2-syntax.md). Key rules:
+- All API names and parameters use **lowercase kebab-case** (e.g., `DescribeInstances` → `describe-instances`)
+- The API version is **required** between the product name and API name (e.g., `aliyun ecs 2014-05-26 describe-instances`)
+- **`RegionId` must be passed as `--biz-region-id`**, NOT `--region-id` (which is reserved for CLI endpoint routing)
+
 ### Step 5: Present the Command
 
 Present the generated CLI command to the user with:
@@ -96,3 +101,7 @@ Use these tools to:
 - **Transparency** — Explain what each command does and what parameters mean
 - **Minimal questions** — Only ask for truly required parameters that the user hasn't provided
 - **Destructive operation warnings** — Prominently warn when a command will delete, stop, release, or modify resources
+
+## References
+
+- [CLI v2 Syntax Guide](references/cli-v2-syntax.md) — New CLI naming conventions, parameter conversion rules, and the critical `--biz-region-id` rename
