@@ -5,7 +5,7 @@
       "args": [
         "lazy.alibabacloud-mcp-proxy@latest",
         "--safety-policy",
-        "iacservice-*=allow,*=deny"
+        "iacservice:*=allow,*=deny"
       ]
     }
   }
