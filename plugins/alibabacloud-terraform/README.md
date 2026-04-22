@@ -7,11 +7,11 @@ Generate and modify Alibaba Cloud Terraform (HCL) configurations using MCP-based
 
 ## How It Works
 
-This plugin uses the `terraform-usage` MCP server (powered by `lazy.alibabacloud-mcp-proxy`) with a safety policy that only allows IaC Service API calls (`iacservice-*=allow,*=deny`). The workflow is:
+This plugin uses the `terraform-usage` MCP server (powered by `lazy.alibabacloud-mcp-proxy`) with a safety policy that only allows IaC Service API calls (`iacservice-*=allow,*=deny`). All IaCService APIs are invoked through the `AlibabaCloud___CallCLI` tool as CLI commands. The workflow is:
 
-1. **Discover** — Find supported products with `AlibabaCloud___IaCService_ListProducts`
-2. **Identify** — List Terraform resource types for a product with `AlibabaCloud___IaCService_ListResourceTypes`
-3. **Schema** — Get full attribute schema with `AlibabaCloud___IaCService_GetResourceType`
+1. **Discover** — Find supported products via `aliyun iacservice list-products`
+2. **Identify** — List Terraform resource types via `aliyun iacservice list-resource-types --product <product>`
+3. **Schema** — Get full attribute schema via `aliyun iacservice get-resource-type --resource-type <resourceType>`
 4. **Document** — Read official Terraform docs with `AlibabaCloud___ReadDocument`
 5. **Generate** — Write or modify HCL code based on gathered knowledge
 
@@ -31,9 +31,7 @@ This plugin uses the `terraform-usage` MCP server (powered by `lazy.alibabacloud
 
 | Tool | Purpose |
 | ---- | ------- |
-| `AlibabaCloud___IaCService_ListProducts` | List all Alibaba Cloud products that support Terraform |
-| `AlibabaCloud___IaCService_ListResourceTypes` | List Terraform resource types for a specific product |
-| `AlibabaCloud___IaCService_GetResourceType` | Get full attribute schema for a Terraform resource type |
+| `AlibabaCloud___CallCLI` | Execute IaCService CLI commands (`list-products`, `list-resource-types`, `get-resource-type`) |
 | `AlibabaCloud___ReadDocument` | Read official Terraform documentation for a resource |
 
 ## Safety
