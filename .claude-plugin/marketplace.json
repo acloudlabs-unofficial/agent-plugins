@@ -27,6 +27,27 @@
         "command-generation"
       ],
       "version": "0.1.0"
+    },
+    {
+      "category": "infrastructure",
+      "description": "Generate and modify Alibaba Cloud Terraform (HCL) code using MCP-based resource type discovery and documentation lookup. Covers the full Alibaba Cloud Terraform provider resource catalog.",
+      "keywords": [
+        "alibabacloud",
+        "aliyun",
+        "terraform",
+        "hcl",
+        "infrastructure-as-code",
+        "iac",
+        "mcp"
+      ],
+      "name": "alibabacloud-terraform",
+      "source": "./plugins/alibabacloud-terraform",
+      "tags": [
+        "alibabacloud",
+        "terraform",
+        "infrastructure-as-code"
+      ],
+      "version": "0.1.0"
     }
   ]
 }

@@ -34,6 +34,7 @@ To maximize the benefits of plugin-assisted development while maintaining securi
 | Plugin | Description | Status |
 | ------ | ----------- | ------ |
 | **alibabacloud-cli-usage** | Generate Alibaba Cloud CLI commands safely via MCP-based API discovery. No direct execution — commands are generated for review only. | Available |
+| **alibabacloud-terraform** | Generate and modify Alibaba Cloud Terraform (HCL) code via MCP-based resource discovery and documentation. | Available |
 
 ## Installation
 

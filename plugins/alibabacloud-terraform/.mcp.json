@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "terraform-usage": {
+      "command": "uvx",
+      "args": [
+        "lazy.alibabacloud-mcp-proxy@latest",
+        "--safety-policy",
+        "iacservice-*=allow,*=deny"
+      ]
+    }
+  }
+}

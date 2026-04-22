@@ -1,0 +1,20 @@
+{
+  "author": {
+    "name": "acloudlabs-unofficial"
+  },
+  "description": "Generate and modify Alibaba Cloud Terraform (HCL) code using MCP-based resource type discovery and documentation lookup. Covers the full Alibaba Cloud Terraform provider resource catalog.",
+  "homepage": "https://github.com/acloudlabs-unofficial/agent-plugins",
+  "keywords": [
+    "alibabacloud",
+    "aliyun",
+    "terraform",
+    "hcl",
+    "infrastructure-as-code",
+    "iac",
+    "mcp"
+  ],
+  "license": "Apache-2.0",
+  "name": "alibabacloud-terraform",
+  "repository": "https://github.com/acloudlabs-unofficial/agent-plugins",
+  "version": "0.1.0"
+}
