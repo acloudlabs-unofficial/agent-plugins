@@ -68,8 +68,8 @@ Based on the API definition and user-provided information:
 4. Use `AlibabaCloud___GenerateCLICommand` to convert the parameters into a properly formatted CLI command
 
 **Important:** The generated CLI command follows the [CLI v2 syntax](references/cli-v2-syntax.md). Key rules:
-- All API names and parameters use **lowercase kebab-case** (e.g., `DescribeInstances` → `describe-instances`)
-- The API version is **required** between the product name and API name (e.g., `aliyun ecs 2014-05-26 describe-instances`)
+- Command format: `aliyun <product> <api-name> [--parameter-name value]`
+- All API names and parameters use **lowercase kebab-case** (e.g., `DescribeInstances` → `describe-instances`, `InstanceId` → `--instance-id`)
 - **`RegionId` must be passed as `--biz-region-id`**, NOT `--region-id` (which is reserved for CLI endpoint routing)
 
 ### Step 5: Present the Command

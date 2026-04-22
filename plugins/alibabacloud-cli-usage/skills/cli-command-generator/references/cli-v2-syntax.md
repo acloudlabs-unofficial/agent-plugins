@@ -9,7 +9,7 @@ Reference: [CLI Center - Alibaba Cloud OpenAPI Portal](https://api.aliyun.com/ap
 The new CLI v2 uses a **lowercase kebab-case** naming convention for all commands and parameters:
 
 ```bash
-aliyun <product> <api-version> <api-name> [--parameter-name value ...]
+aliyun <product> <api-name> [--parameter-name value ...]
 ```
 
 ### Naming Rules
@@ -25,6 +25,57 @@ aliyun <product> <api-version> <api-name> [--parameter-name value ...]
 
 ### Examples
 
+**Query available ECS resources:**
+
+```bash
+aliyun ecs describe-available-resource \
+  --biz-region-id cn-hangzhou \
+  --destination-resource InstanceType
+```
+
+Full parameter list for `describe-available-resource`:
+
+| Parameter | Required | Description |
+| --------- | -------- | ----------- |
+| `--biz-region-id` | ✅ | Region ID (renamed from `RegionId`) |
+| `--destination-resource` | ✅ | Target resource type to query |
+| `--instance-charge-type` | ❌ | Billing method |
+| `--spot-strategy` | ❌ | Spot instance strategy |
+| `--spot-duration` | ❌ | Spot instance duration |
+| `--zone-id` | ❌ | Availability zone |
+| `--io-optimized` | ❌ | I/O optimized flag |
+| `--dedicated-host-id` | ❌ | Dedicated host ID |
+| `--instance-type` | ❌ | Instance type filter |
+| `--system-disk-category` | ❌ | System disk category |
+| `--data-disk-category` | ❌ | Data disk category |
+| `--network-category` | ❌ | Network category |
+| `--cores` | ❌ | CPU core count filter |
+| `--memory` | ❌ | Memory size filter |
+| `--resource-type` | ❌ | Resource type |
+| `--scope` | ❌ | Query scope |
+
+**Transform RDS instance billing type:**
+
+```bash
+aliyun rds transform-db-instance-pay-type \
+  --db-instance-id rm-xxxxxxxxx \
+  --pay-type Prepaid
+```
+
+Full parameter list for `transform-db-instance-pay-type`:
+
+| Parameter | Required | Description |
+| --------- | -------- | ----------- |
+| `--db-instance-id` | ✅ | RDS instance ID |
+| `--pay-type` | ✅ | Target billing type |
+| `--client-token` | ❌ | Idempotency token |
+| `--used-time` | ❌ | Subscription duration |
+| `--period` | ❌ | Subscription period unit |
+| `--business-info` | ❌ | Business info |
+| `--auto-renew` | ❌ | Enable auto-renewal |
+| `--auto-use-coupon` | ❌ | Auto-apply coupon |
+| `--promotion-code` | ❌ | Promotion code |
+
 **List ECS instances:**
 
 ```bash
@@ -32,24 +83,12 @@ aliyun <product> <api-version> <api-name> [--parameter-name value ...]
 aliyun ecs DescribeInstances --RegionId cn-hangzhou
 
 # New v2 style
-aliyun ecs 2014-05-26 describe-instances --biz-region-id cn-hangzhou
-```
-
-**Create a VPC:**
-
-```bash
-aliyun vpc 2016-04-28 create-vpc --biz-region-id cn-hangzhou --cidr-block 172.16.0.0/12
-```
-
-**Describe RDS instances:**
-
-```bash
-aliyun rds 2014-08-15 describe-db-instances --biz-region-id cn-hangzhou
+aliyun ecs describe-instances --biz-region-id cn-hangzhou
 ```
 
 ## ⚠️ CRITICAL: RegionId Parameter Rename
 
-In CLI v2, the API parameter `RegionId` has been **renamed** to `--biz-region-id` to avoid conflicts with the CLI's own `--region-id` flag (which controls the CLI client's endpoint routing).
+In CLI v2, the API parameter `RegionId` has been **renamed** to a fixed name `--biz-region-id` to avoid conflicts with the CLI's own `--region-id` flag (which controls the CLI client's endpoint routing).
 
 | Context | Flag | Purpose |
 | ------- | ---- | ------- |
@@ -61,25 +100,10 @@ In CLI v2, the API parameter `RegionId` has been **renamed** to `--biz-region-id
 ## Parameter Conversion Rules
 
 1. **PascalCase → kebab-case**: `InstanceId` → `--instance-id`
-2. **Consecutive uppercase**: `VPCId` → `--vpc-id`, `DBInstanceId` → `--db-instance-id`
+2. **Consecutive uppercase treated as word boundaries**: `VPCId` → `--vpc-id`, `DBInstanceId` → `--db-instance-id`
 3. **Nested/indexed parameters**: `Tag.1.Key` → `--tag.1.key`, `SecurityGroupIds.1` → `--security-group-ids.1`
 4. **Boolean parameters**: `--dry-run true` or `--dry-run false`
-5. **RegionId exception**: `RegionId` → `--biz-region-id` (NOT `--region-id`)
-
-## API Version
-
-The API version is **required** in v2 commands and appears between the product name and the API name:
-
-```bash
-aliyun <product> <api-version> <api-name>
-```
-
-For example:
-- ECS: `aliyun ecs 2014-05-26 describe-instances`
-- VPC: `aliyun vpc 2016-04-28 describe-vpcs`
-- RDS: `aliyun rds 2014-08-15 describe-db-instances`
-- SLB: `aliyun slb 2014-05-15 describe-load-balancers`
-- OSS: Uses a separate `ossutil` tool, not the standard CLI
+5. **RegionId exception**: `RegionId` → `--biz-region-id` (NEVER `--region-id`)
 
 ## Output Format
 
@@ -87,11 +111,11 @@ By default, the CLI outputs JSON. You can control the output format:
 
 ```bash
 # JSON output (default)
-aliyun ecs 2014-05-26 describe-instances --biz-region-id cn-hangzhou
+aliyun ecs describe-instances --biz-region-id cn-hangzhou
 
 # Table output
-aliyun ecs 2014-05-26 describe-instances --biz-region-id cn-hangzhou --output table
+aliyun ecs describe-instances --biz-region-id cn-hangzhou --output table
 
 # Only specific fields
-aliyun ecs 2014-05-26 describe-instances --biz-region-id cn-hangzhou --output cols=InstanceId,InstanceName,Status
+aliyun ecs describe-instances --biz-region-id cn-hangzhou --output cols=InstanceId,InstanceName,Status
 ```
