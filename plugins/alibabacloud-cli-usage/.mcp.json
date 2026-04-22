@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "cli-usage": {
+      "command": "uvx",
+      "args": [
+        "lazy.alibabacloud-mcp-proxy@latest",
+        "--safety-policy",
+        "*=deny"
+      ]
+    }
+  }
+}

@@ -33,7 +33,7 @@ To maximize the benefits of plugin-assisted development while maintaining securi
 
 | Plugin | Description | Status |
 | ------ | ----------- | ------ |
-| _Coming soon_ | Plugins will be added incrementally. | Planned |
+| **alibabacloud-cli-usage** | Generate Alibaba Cloud CLI commands safely via MCP-based API discovery. No direct execution — commands are generated for review only. | Available |
 
 ## Installation
 

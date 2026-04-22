@@ -7,5 +7,26 @@
   "owner": {
     "name": "acloudlabs-unofficial"
   },
-  "plugins": []
+  "plugins": [
+    {
+      "category": "cli",
+      "description": "Generate Alibaba Cloud CLI commands safely using MCP-based API discovery and command generation. No direct CLI execution — commands are generated for review only.",
+      "keywords": [
+        "alibabacloud",
+        "aliyun",
+        "cli",
+        "command-generation",
+        "api-discovery",
+        "mcp"
+      ],
+      "name": "alibabacloud-cli-usage",
+      "source": "./plugins/alibabacloud-cli-usage",
+      "tags": [
+        "alibabacloud",
+        "cli",
+        "command-generation"
+      ],
+      "version": "0.1.0"
+    }
+  ]
 }

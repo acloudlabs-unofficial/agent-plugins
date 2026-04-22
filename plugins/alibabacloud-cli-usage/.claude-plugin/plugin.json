@@ -1,0 +1,19 @@
+{
+  "author": {
+    "name": "acloudlabs-unofficial"
+  },
+  "description": "Generate Alibaba Cloud CLI commands safely using MCP-based API discovery and command generation. No direct CLI execution — commands are generated for review only.",
+  "homepage": "https://github.com/acloudlabs-unofficial/agent-plugins",
+  "keywords": [
+    "alibabacloud",
+    "aliyun",
+    "cli",
+    "command-generation",
+    "api-discovery",
+    "mcp"
+  ],
+  "license": "Apache-2.0",
+  "name": "alibabacloud-cli-usage",
+  "repository": "https://github.com/acloudlabs-unofficial/agent-plugins",
+  "version": "0.1.0"
+}
