@@ -1,0 +1,11 @@
+{
+  "metadata": {
+    "description": "Agent Plugins for Alibaba Cloud (Unofficial) equip AI coding agents with the skills to help you architect, deploy, and operate on Alibaba Cloud. This is a community-driven project and is NOT affiliated with Alibaba Cloud.",
+    "version": "0.1.0"
+  },
+  "name": "agent-plugins-for-alicloud",
+  "owner": {
+    "name": "acloudlabs-unofficial"
+  },
+  "plugins": []
+}
