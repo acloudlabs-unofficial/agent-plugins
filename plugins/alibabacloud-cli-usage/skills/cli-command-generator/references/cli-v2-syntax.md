@@ -105,6 +105,52 @@ In CLI v2, the API parameter `RegionId` has been **renamed** to a fixed name `--
 4. **Boolean parameters**: `--dry-run true` or `--dry-run false`
 5. **RegionId exception**: `RegionId` → `--biz-region-id` (NEVER `--region-id`)
 
+## Multi-Version APIs
+
+Some Alibaba Cloud products have multiple API versions. Plugins whose description contains the `multi-version` keyword support multi-version API calls.
+
+You can check installed plugins and their multi-version support:
+
+```bash
+aliyun plugin list
+```
+
+Example output:
+
+```
+Name                Version             Description
+----                -------             -----------
+aliyun-cli-ecs      0.1.0               Aliyun CLI plugin for Elastic Compute Service operations.
+aliyun-cli-ess      0.1.0               Aliyun CLI plugin for Auto Scaling operations with multi-version API support.
+aliyun-cli-fc       0.1.0               Aliyun CLI plugin for Function Compute 3.0 operations.
+```
+
+### Using the Default API Version
+
+When no version is specified, the CLI uses the product's default API version:
+
+```bash
+aliyun ess describe-scaling-groups --biz-region-id cn-hangzhou
+```
+
+### Specifying an API Version
+
+Use `--api-version` to target a specific API version:
+
+```bash
+aliyun ess describe-scaling-groups --api-version 2022-02-22 --biz-region-id cn-hangzhou
+```
+
+### Listing Available API Versions
+
+Use `list-api-versions` to see all supported versions for a product:
+
+```bash
+aliyun ess list-api-versions
+```
+
+> **Note:** Only products with multi-version plugins support `--api-version` and `list-api-versions`. For single-version products, the version is implicit and cannot be changed.
+
 ## Output Format
 
 By default, the CLI outputs JSON. You can control the output format:
